@@ -1,0 +1,101 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Blurit_SDK
+import AVFoundation
+import Accelerate
+@_exported import Blurit_SDK
+import Compression
+import CoreFoundation
+import CoreML
+import Foundation
+import SpriteKit
+import Swift
+import UIKit
+import _Concurrency
+public typealias CRC32 = Swift.UInt32
+public typealias Consumer = (_ data: Foundation.Data) throws -> Swift.Void
+public typealias Provider = (_ position: Swift.Int, _ size: Swift.Int) throws -> Foundation.Data
+extension Foundation.Data {
+  public func crc32(checksum: Blurit_SDK.CRC32) -> Blurit_SDK.CRC32
+  public static func compress(size: Swift.Int, bufferSize: Swift.Int, provider: (_ position: Swift.Int, _ size: Swift.Int) throws -> Foundation.Data, consumer: (_ data: Foundation.Data) throws -> Swift.Void) throws -> Blurit_SDK.CRC32
+  public static func decompress(size: Swift.Int, bufferSize: Swift.Int, skipCRC32: Swift.Bool, provider: (_ position: Swift.Int, _ size: Swift.Int) throws -> Foundation.Data, consumer: (_ data: Foundation.Data) throws -> Swift.Void) throws -> Blurit_SDK.CRC32
+}
+extension Blurit_SDK.LicenseKeyStatus : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public static var _nsErrorDomain: Swift.String {
+    get
+  }
+}
+public struct DetectedElement {
+  public var rect: CoreGraphics.CGRect
+  public var objectType: Blurit_SDK.DetectedElement.DetectionType
+  public let confidenceRate: Swift.Float
+  public var frameIndex: Swift.Int?
+  public enum DetectionType {
+    case face
+    case plate
+    public static func == (a: Blurit_SDK.DetectedElement.DetectionType, b: Blurit_SDK.DetectedElement.DetectionType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public struct VideoPredictionResult {
+  public var frameResultDict: [Swift.Int : Blurit_SDK.ImagePredictionResult]
+  public let frameNumber: Swift.Int
+}
+extension Foundation.FileManager {
+  public func unzipItem(at sourceURL: Foundation.URL, to destinationURL: Foundation.URL, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil, preferredEncoding: Swift.String.Encoding? = nil) throws
+}
+extension Foundation.URL {
+  public func isContained(in parentDirectoryURL: Foundation.URL) -> Swift.Bool
+}
+public let defaultReadChunkSize: Swift.UInt32
+public let defaultWriteChunkSize: Swift.UInt32
+public let defaultFilePermissions: Swift.UInt16
+public let defaultDirectoryPermissions: Swift.UInt16
+public struct BluritConfiguration {
+  public var strongThresholdScore: Swift.Float
+  public var weakThresholdScore: Swift.Float
+  public var maxFrameGapTracking: Swift.Int
+  public var numberOfFramesToSkip: Swift.Int
+  public var minTrackingFrameNumber: Swift.Int
+}
+public struct ImagePredictionResult {
+  public var detectedElements: [Blurit_SDK.DetectedElement]
+}
+public enum BluritError : Swift.Error {
+  case incorrectParameter(parameter: Swift.String, message: Swift.String?)
+  case failedToLoadModel
+  case modelNotLoaded
+  case modelAlreadyLoaded
+  case invalidLicense(licenseStatus: Blurit_SDK.LicenseKeyStatus)
+  case unableToProcessImage
+  case invalidVideoUrl
+  case incorrectVideo
+}
+extension Blurit_SDK.BluritError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public class Blurit {
+  public init(licenceKey: Swift.String, completion: ((Swift.Error?) -> Swift.Void)?)
+  public func getLicense() -> Blurit_SDK.LicenseKeyStatus?
+  public func updateLicense(licenceKey: Swift.String) -> Blurit_SDK.LicenseKeyStatus?
+  public func loadModels(completion: ((Swift.Error?) -> Swift.Void)?)
+  public func detectObjectsAsync(videoUrl: Foundation.URL, completion: @escaping (Swift.Result<Blurit_SDK.VideoPredictionResult, Swift.Error>) -> Swift.Void)
+  public func detectObjectsSync(videoUrl: Foundation.URL) -> Swift.Result<Blurit_SDK.VideoPredictionResult, Swift.Error>
+  public func anonymizeAsync(videoUrl: Foundation.URL, predictionResult: Blurit_SDK.VideoPredictionResult, completion: @escaping (Swift.Result<Foundation.URL, Swift.Error>) -> Swift.Void)
+  public func anonymizeSync(videoUrl: Foundation.URL, predictionResult: Blurit_SDK.VideoPredictionResult) -> Swift.Result<Foundation.URL, Swift.Error>
+  public func detectObjectsAsync(sourceImage: UIKit.UIImage, completion: @escaping (Swift.Result<Blurit_SDK.ImagePredictionResult, Swift.Error>) -> Swift.Void)
+  public func detectObjectsSync(sourceImage: UIKit.UIImage) -> Swift.Result<Blurit_SDK.ImagePredictionResult, Swift.Error>
+  public func anonymizeAsync(sourceImage: UIKit.UIImage, predictionResult: Blurit_SDK.ImagePredictionResult, completion: @escaping (Swift.Result<UIKit.UIImage, Swift.Error>) -> Swift.Void)
+  public func anonymizeSync(sourceImage: UIKit.UIImage, predictionResult: Blurit_SDK.ImagePredictionResult) -> Swift.Result<UIKit.UIImage, Swift.Error>
+  @objc deinit
+}
+extension Blurit_SDK.DetectedElement.DetectionType : Swift.Equatable {}
+extension Blurit_SDK.DetectedElement.DetectionType : Swift.Hashable {}

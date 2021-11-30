@@ -1,0 +1,10 @@
+{"name":"Blurit-ios",
+  "tagline":"Blurit is an SDK to anonymize pictures and videos containing faces and car plates.",
+  "body":"# Blurit\r\n\r\n
+  [![Version](https://img.shields.io/cocoapods/v/Blurit.svg?style=flat)](http://cocoapods.org/pods/Blurit)\r\n[![License](https://img.shields.io/cocoapods/l/Blurit.svg?style=flat)](http://cocoapods.org/pods/Facelytics)\r\n[![Platform](https://img.shields.io/cocoapods/p/Facelytics.svg?style=flat)](http://cocoapods.org/pods/Facelytics)\r\n\r\n *Podfile* :\r\n\r\n```ruby\r\n
+  pod \"Blurit\"\r\n```\r\n\r\n2. Install the pod(s) by running `pod install`.\r\n3. Include Blurit wherever you need it with `#import <Facelytics/Facelytics.h>` from Objective-C or `import Facelytics` from Swift.\r\n4.
+  ## Requirements\r\n\r\n
+  * Xcode 13\r\n* iOS 13\r\n
+  ## License\r\n\r\nFacelytics is available under a commercial license. See the LICENSE file for more info.\r\n\r\n## Author\r\n\r\nWassa, contact@wassa.fr\r\n\r\n",
+  "google":"",
+  "note":"Don't delete this file! It's used internally to help with page regeneration."}

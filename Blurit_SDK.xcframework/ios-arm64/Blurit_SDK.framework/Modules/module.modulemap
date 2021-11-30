@@ -1,0 +1,11 @@
+framework module Blurit_SDK {
+  umbrella header "Blurit_SDK.h"
+
+  export *
+  module * { export * }
+}
+
+module Blurit_SDK.Swift {
+    header "Blurit_SDK-Swift.h"
+    requires objc
+}
