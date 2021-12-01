@@ -20,6 +20,6 @@ DESC
   spec.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
   spec.ios.vendored_frameworks = 'Blurit_SDK.xcframework'
-  spec.frameworks = 'Blurit'
+  spec.frameworks = 'Blurit_SDK'
 
 end
