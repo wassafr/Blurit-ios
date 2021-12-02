@@ -129,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				DC2A648E26A86CE0004D1AA6 /* AppDelegate.swift */,
-				DC89451027188A7E003B88B1 /* Model */,
 				DCEC290626C186A90023203F /* Services */,
 				DC2A649026A86CE0004D1AA6 /* SceneDelegate.swift */,
 				DC883C4426C4234100ED2086 /* ViewControllers */,
@@ -319,13 +318,6 @@
 				DC2A649226A86CE0004D1AA6 /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		DC89451027188A7E003B88B1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		DC8945152719CAD4003B88B1 /* Views */ = {

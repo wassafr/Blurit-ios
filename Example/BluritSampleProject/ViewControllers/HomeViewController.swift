@@ -48,8 +48,13 @@ class HomeViewController: UIViewController {
   }
   
   func handlePickedImage(image: UIImage) {
+    if let error = BluritService.shared.startingError {
+      self.alert("Blurit init error", error.localizedDescription, nil)
+      return
+    }
+
     guard BluritService.shared.serviceStarted else {
-      self.alert(nil, "Service not yet started", nil)
+      self.alert(nil, "Service not yet started, wait a few more seconds", nil)
       return
     }
 

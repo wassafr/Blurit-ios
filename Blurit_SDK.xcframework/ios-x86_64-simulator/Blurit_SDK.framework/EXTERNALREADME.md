@@ -1,4 +1,4 @@
-# Blurit
+![Blurit](logo_blurit.png)
 
 [![Version](https://img.shields.io/cocoapods/v/Blurit?style=flat)](http://cocoapods.org/pods/Blurit)
 [![License](https://img.shields.io/cocoapods/l/Blurit?style=flat)](http://cocoapods.org/pods/Blurit)
@@ -18,12 +18,12 @@ For more information about Blurit you can visit our [website](http://blurit.io/l
 1. Add a pod entry for Blurit to your *Podfile* :
 
 ```
-pod 'Blurit_SDK'
+pod 'Blurit'
 ```
 
 2. Install the pod(s) by running `pod install`.
 
-3. Include Blurit wherever you need it with `#import <Blurit/Blurit.h>` from Objective-C or `import Blurit` from Swift.
+3. Include Blurit wherever you need it with `#import <Blurit_SDK/Blurit_SDK.h>` from Objective-C or `import Blurit_SDK` from Swift.
 
 ### Swift Package Manager
 
@@ -47,50 +47,62 @@ Make sure you also see [Blurit documentation](https://services.wassa.io/api/glob
 
 The sample code is commented and show usage examples of the SDK.
 
-###Basics
+### Basics
+
 1. Add the following import to the top of the file :
 
-```
+```swift
   import Blurit
 
 ```
 
  2. Instantiate a Blurit object
 
- ``
- bluritInstance = Blurit(licenceKey: "your license key", completion: nil)
+ ```swift
+ bluritInstance = Blurit(licenceKey: <#your license#>, completion: nil)
  ```
 
  3. Load the detection models in the Blurit instance
- ```
+ ```swift
  bluritInstance?.loadModels(completion: { (error) in
    if let error = error {
      print("❌ Cannot initialize Blurit \(error.localizedDescription)")
    } else {
-
+     // The loading has completed ‼️
    }
  })
  ```
 
- 4. Make prediction from picture
- ```
- BluritService.shared.bluritInstance?.detectObjectsAsync(sourceImage: image, completion: { firstCompletionResult in
-
-    /// Handle detected objects
+ 4. Make prediction from picture<br>
+ ⚠️ Be careful, you must make sure the model loading has completed before using this method.
+ ```swift
+ bluritInstance?.detectObjectsAsync(sourceImage: image, completion: { firstCompletionResult in
+  switch firstCompletionResult {
+      case .success(let predictionResult):
+        /// Handle detected objects with `anonymizeAsync` or `anonymizeSync`
+      case .failure(let error):
+          /// Handle error
+      }
 
  })
 
- ``````
+ ```
 
- 5. You can now use prediction for gender and age
- 
- BluritService.shared.bluritInstance?.anonymizeAsync(sourceImage: image, predictionResult: predictionResult, completion: { secondCompletionResult in
+ 5. You can now use predictions to apply the blur
+ ```swift
+ bluritInstance?.anonymizeAsync(sourceImage: image, predictionResult: predictionResult, completion: { secondCompletionResult in
 
+    switch firstCompletionResult {
+      case .success(let blurredImage):
+          /// Handle your image
+       case .failure(let error):
+           /// Handle error
+       }
       /// Handle blurred picture
 
     })
 
-``````
+```
 
 
 

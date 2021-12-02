@@ -2,6 +2,9 @@
 
 ## Synopsis
 
+Blurit is an SDK to anonymize picture and videos containing faces and car plates.<br>
+For more information about Blurit you can visit our [website](http://blurit.io/library/ios).
+
 ## Environment setup & installation
 
 - XCode 12.0+
