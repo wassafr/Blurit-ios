@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = "Blurit"
-  spec.version          = "1.0.0"
+  spec.version          = "1.0.1"
   spec.summary          = "Blurit is an SDK to anonymize pictures and videos containing faces and car plates."
   spec.description      = <<-DESC
 Blurit is able to track multiple faces and then detect gender and age for each detected face.
